@@ -31,7 +31,7 @@ void MeanAllKernel(const phi::Context& dev_ctx,
 
   auto e1 = q->fill(out_data, static_cast<T>(0), 1);
 
-  q->single_task(e1, [=]() {
+  q->single_task<class mean>(e1, [=]() {
     for (auto i = 0; i < numel; ++i) {
       *out_data += x_data[i];
     }
@@ -57,7 +57,7 @@ void MeanAllGradKernel(const phi::Context& dev_ctx,
 
   show_kernel("MeanAllGrad, size=" << numel);
 
-  q->parallel_for(numel, [=](auto& i) {
+  q->parallel_for<class mean>(numel, [=](auto& i) {
     x_grad_data[i] = *out_grad_data / static_cast<T>(numel);
   });
   q->wait();

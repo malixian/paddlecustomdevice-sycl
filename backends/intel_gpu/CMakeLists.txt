@@ -4,12 +4,13 @@ project(paddle-custom-intel-gpu CXX C)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-option(WITH_ONEDNN "use oneDNN with custom kernels" OFF)
-option(WITH_KERNELS "compile with custom kernels" ON)
+option(WITH_ONEDNN "use oneDNN with custom kernels" ON)
+#option(WITH_KERNELS "compile with custom kernels" ON)
+option(ON_INFER "compile with inference c++ lib" OFF)
 option(WITH_TESTING "compile with unit testing" ON)
 
 if(NOT DEFINED ONEAPI_PATH)
-  set(ONEAPI_PATH "$ENV{HOME}/intel/oneapi")
+  set(ONEAPI_PATH "/Paddle-oneDNN")
 endif()
 
 if(NOT EXISTS "${ONEAPI_PATH}")
@@ -19,7 +20,7 @@ endif()
 message(STATUS "OneAPI DIR : ${ONEAPI_PATH}")
 
 if(NOT DEFINED ONEAPI_COMPILER_DIR)
-  set(ONEAPI_COMPILER_DIR "compiler/latest")
+  set(ONEAPI_COMPILER_DIR "llvm-sycl")
 endif()
 
 if(NOT EXISTS "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}")
@@ -27,17 +28,30 @@ if(NOT EXISTS "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}")
     FATAL_ERROR "Can't find directory ${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}")
 endif()
 
-find_package(PythonInterp 3.9 REQUIRED)
-find_package(PythonLibs 3.9 REQUIRED)
+#find_package(PythonInterp 3.9 REQUIRED)
+#find_package(PythonLibs 3.9 REQUIRED)
 
-set(DPCPP_COMPIER_PATH "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/linux/bin/dpcpp")
+find_package(
+  Python
+  COMPONENTS Interpreter
+  REQUIRED)
+
+set(DPCPP_COMPIER_PATH "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/build/bin/clang++")
 set(ONEAPI_SYCL_INCLUDE
-    "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/linux/include/sycl/")
-set(ONEAPI_SYCL_LIBDIR "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/linux/lib/")
+    "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/build/include/sycl/")
+
+set(SYCL_INCLUDE
+    "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/build/include/")
+
+set(ONEAPI_SYCL_LIBDIR "${ONEAPI_PATH}/${ONEAPI_COMPILER_DIR}/build/lib/")
 set(CMAKE_CXX_COMPILER "${DPCPP_COMPIER_PATH}")
 
+set(ONEDNN_INC "${ONEAPI_PATH}/oneDNN/include")
+set(ONEDNN_BUILD_INC "${ONEAPI_PATH}/oneDNN/build/include")
+message(${ONEDNN_INC})
+
 if(WITH_ONEDNN)
-  include_directories(${ONEAPI_SYCL_INCLUDE} ${ONEDNN_INC})
+	include_directories( ${SYCL_INCLUDE}  ${ONEAPI_SYCL_INCLUDE} ${ONEDNN_INC} ${ONEDNN_BUILD_INC})
 else()
   include_directories(${ONEAPI_SYCL_INCLUDE} $ENV{DNNLROOT}/include)
 endif()
@@ -46,7 +60,6 @@ set(PLUGIN_NAME "paddle-custom-intel-gpu")
 set(PLUGIN_VERSION "0.0.1")
 
 include(paddle)
-message(STATUS "PADDLE_BUILD_DIR DIR : ${PADDLE_BUILD_DIR}")
 message(STATUS "ONEDNN_INC DIR : ${ONEDNN_INC}")
 
 include_directories(${PADDLE_INC_DIR} ${CMAKE_SOURCE_DIR}
@@ -58,7 +71,7 @@ if(WITH_ONEDNN)
   add_definitions(-DONEDNN)
 endif()
 
-add_definitions(-std=c++14)
+add_definitions(-std=c++17)
 
 # custom kernels
 file(
@@ -66,14 +79,18 @@ file(
   RELATIVE ${CMAKE_SOURCE_DIR}
   kernels/*.cc)
 message(STATUS "PLUGIN_SRCS : ${PLUGIN_SRCS}")
-
-# custom runtime
 list(APPEND PLUGIN_SRCS runtime/runtime.cc)
-add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)
+#add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)
+#add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)
 
 # build shared library
 add_library(${PLUGIN_NAME} SHARED ${PLUGIN_SRCS})
+if(ON_INFER)
+  target_link_directories(${PLUGIN_NAME} PRIVATE ${PADDLE_INFERENCE_LIB_DIR})
+  target_link_libraries(${PLUGIN_NAME} PRIVATE paddle_inference)
+else()
+  target_link_libraries(${PLUGIN_NAME} PRIVATE ${PADDLE_CORE_LIB})
+endif()
 
 # link paddle shared library
 include(third_party)
@@ -84,6 +101,8 @@ if("${CMAKE_CXX_COMPILER}" STREQUAL "${DPCPP_COMPIER_PATH}")
   add_definitions(-DUSEDPCPP)
   set_target_properties(${PLUGIN_NAME} PROPERTIES CXX_STANDARD 17)
 endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsycl-unnamed-lambda")
 
 # testing
 if(WITH_TESTING)

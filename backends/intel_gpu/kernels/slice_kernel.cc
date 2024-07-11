@@ -102,7 +102,7 @@ void SliceRawKernel(const phi::Context& ctx,
       sycl::accessor a_offsets(offsets_buf, h, sycl::read_only);
       sycl::accessor a_extents(extents_buf, h, sycl::read_only);
       sycl::accessor a_in_step(in_step_buf, h, sycl::read_only);
-      h.single_task([numel,
+      h.single_task<class slice>([numel,
                      a_index,
                      a_offsets,
                      a_extents,

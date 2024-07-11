@@ -29,11 +29,13 @@ if(NOT WITH_TESTING)
 endif()
 include(paddle)
 
+message(${PADDLE_INC_DIR})
+
 include_directories(${PADDLE_INC_DIR} ${CMAKE_SOURCE_DIR}
                     ${CMAKE_SOURCE_DIR}/kernels)
 link_directories(${PADDLE_LIB_DIR})
 
-add_definitions(-std=c++14)
+add_definitions(-std=c++17)
 
 file(
   GLOB_RECURSE PLUGIN_SRCS

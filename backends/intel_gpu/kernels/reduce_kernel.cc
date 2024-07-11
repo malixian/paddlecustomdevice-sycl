@@ -83,9 +83,9 @@ void ReduceKernel(const phi::Context& dev_ctx,
 
     auto out_mem = dnnl::memory(md_out, eng, out_data);
 
-    auto oper_desc =
-        dnnl::reduction::desc(reduction_type, md_x, md_out, 0.f, 0.f);
-    auto prim_desc = dnnl::reduction::primitive_desc(oper_desc, eng);
+    // auto oper_desc =
+    //    dnnl::reduction::desc(reduction_type, md_x, md_out, 0.f, 0.f);
+    auto prim_desc = dnnl::reduction::primitive_desc(eng, reduction_type, md_x, md_out, 0.f, 0.f);
 
     auto reduction_prim = dnnl::reduction(prim_desc);
 

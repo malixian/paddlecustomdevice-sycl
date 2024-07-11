@@ -123,9 +123,9 @@ void SoftmaxGradKernel(const phi::Context& dev_ctx,
   auto diff_dst_memory_p = dnnl::memory(md_out_grad, eng, out_grad.data<T>());
   auto diff_src_memory_p = dnnl::memory(md_x_grad, eng, x_grad->data<T>());
 
-  auto bwd_desc = dnnl::softmax_backward::desc(md_out_grad, md_out, calc_axis);
+  //auto bwd_desc = dnnl::softmax_backward::desc(md_out_grad, md_out, calc_axis);
   auto bwd_pd_ =
-      dnnl::softmax_backward::primitive_desc(bwd_desc, eng, *softmax_pd);
+      dnnl::softmax_backward::primitive_desc(eng, dnnl::algorithm::softmax_accurate, md_x_grad, md_out_grad, md_out, calc_axis, *softmax_pd);
 
   auto softmax_bwd_p = dnnl::softmax_backward(bwd_pd_);
 
@@ -186,11 +186,11 @@ void SoftmaxKernel(const phi::Context& ctx,
     auto mem_src = dnnl::memory(md_src, eng, x_data);
     auto mem_dst = dnnl::memory(md_dst, eng, out_data);
 
-    auto softmax_d = dnnl::softmax_forward::desc(
-        dnnl::prop_kind::forward_training, md_src, calc_axis);
+    //auto softmax_d = dnnl::softmax_forward::desc(
+    //    dnnl::prop_kind::forward_training, md_src, calc_axis);
 
     softmax_pd =
-        std::make_shared<dnnl::softmax_forward::primitive_desc>(softmax_d, eng);
+        std::make_shared<dnnl::softmax_forward::primitive_desc>(eng, dnnl::prop_kind::forward_training, dnnl::algorithm::softmax_accurate, md_src, md_dst, calc_axis);
 
     auto softmax_prim = dnnl::softmax_forward(*softmax_pd);
     std::unordered_map<int, dnnl::memory> softmax_args;

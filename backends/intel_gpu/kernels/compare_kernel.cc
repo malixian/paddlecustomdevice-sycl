@@ -42,10 +42,10 @@ void RawCompareKernelSycl(const phi::Context& dev_ctx,
   auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   // if float_func == func only func is to be calculated
   if (float_func != func && std::is_floating_point<T>::value) {
-    q->parallel_for(numel,
+    q->parallel_for<class compare>(numel,
                     [=](auto& i) { float_func(x_data, y_data, out_data, i); });
   } else {
-    q->parallel_for(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
+    q->parallel_for<class compare>(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
   }
   q->wait();
 }
@@ -92,8 +92,8 @@ void RawCompareKernelDNN(const phi::Context& dev_ctx,
 
   auto out_mem = dnnl::memory(md_out, eng, out_data);
 
-  auto oper_desc = dnnl::binary::desc(binary_type, md_x, md_y, md_out);
-  auto prim_desc = dnnl::binary::primitive_desc(oper_desc, eng);
+  //auto oper_desc = dnnl::binary::desc(binary_type, md_x, md_y, md_out);
+  auto prim_desc = dnnl::binary::primitive_desc(eng, binary_type, md_x, md_y, md_out);
   auto prim = dnnl::binary(prim_desc);
 
   std::unordered_map<int, dnnl::memory> binary_args;

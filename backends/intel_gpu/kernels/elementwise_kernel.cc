@@ -37,7 +37,7 @@ void MultiplyRawKernelGPU(const phi::Context& dev_ctx,
   auto input_y = y.data<T>();
 
   q->submit([&](sycl::handler& h) {
-    h.parallel_for(NOUT, [input_x, input_y, out_data](sycl::id<1> i) {
+    h.parallel_for<class ElementWise>(NOUT, [input_x, input_y, out_data](sycl::id<1> i) {
       out_data[i] = input_x[i] * input_y[i];
     });
   });
@@ -92,9 +92,9 @@ void MultiplyOneDNNRawKernel(const phi::Context& dev_ctx,
 
   auto out_mem = dnnl::memory(md_out, eng, out_data);
 
-  auto oper_desc =
-      dnnl::binary::desc(dnnl::algorithm::binary_mul, md_x, md_y, md_out);
-  auto prim_desc = dnnl::binary::primitive_desc(oper_desc, eng);
+  // auto oper_desc =
+  //    dnnl::binary::desc(dnnl::algorithm::binary_mul, md_x, md_y, md_out);
+  auto prim_desc = dnnl::binary::primitive_desc(eng, dnnl::algorithm::binary_mul, md_x, md_y, md_out);
   auto prim = dnnl::binary(prim_desc);
 
   std::unordered_map<int, dnnl::memory> binary_args;
