@@ -14,7 +14,7 @@ PaddleCustomDevice は以下のバックエンドをサポートしています:
 
 - [Ascend NPU 用 PaddlePaddle カスタムデバイス実装](backends/npu/README.md)
 - [Cambricon MLU 用 PaddlePaddle カスタムデバイス実装](backends/mlu/README.md)
-- [Intel GPU 用 PaddlePaddle カスタムデバイス実装](backends/intel_gpu/README.md)
+- [Intel GPU 用 PaddlePaddle カスタムデバイス実装](backends/SYCL/README.md)
 - [Apple MPS 用 PaddlePaddle カスタムデバイス実装](backends/mps/README.md)
 - [Biren GPU 用 PaddlePaddle カスタムデバイス実装](backends/biren_gpu/README.md)
 - [Enflame GCU 用 PaddlePaddle カスタムデバイス実装](backends/gcu/README.md)
