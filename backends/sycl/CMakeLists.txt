@@ -9,8 +9,9 @@ option(WITH_ONEDNN "use oneDNN with custom kernels" ON)
 option(ON_INFER "compile with inference c++ lib" OFF)
 option(WITH_TESTING "compile with unit testing" ON)
 
+get_filename_component(USER_HOME_DIR $ENV{HOME} ABSOLUTE)
 if(NOT DEFINED ONEAPI_PATH)
-  set(ONEAPI_PATH "/Paddle-oneDNN")
+	set(ONEAPI_PATH "${USER_HOME_DIR}/repos/paddle-onednn-dev")
 endif()
 
 if(NOT EXISTS "${ONEAPI_PATH}")
@@ -48,6 +49,7 @@ set(CMAKE_CXX_COMPILER "${DPCPP_COMPIER_PATH}")
 
 set(ONEDNN_INC "${ONEAPI_PATH}/oneDNN/include")
 set(ONEDNN_BUILD_INC "${ONEAPI_PATH}/oneDNN/build/include")
+set(ONEDNN_LIBDIR "${ONEAPI_PATH}/oneDNN/build/src")
 message(${ONEDNN_INC})
 
 if(WITH_ONEDNN)
@@ -65,12 +67,12 @@ message(STATUS "ONEDNN_INC DIR : ${ONEDNN_INC}")
 
 include_directories(${PADDLE_INC_DIR} ${CMAKE_SOURCE_DIR}
                     ${THIRD_PARTY_INC_DIR} ${CMAKE_SOURCE_DIR}/kernels)
-link_directories(${PADDLE_LIB_DIR} ${ONEAPI_SYCL_LIBDIR})
+link_directories(${PADDLE_LIB_DIR} ${ONEAPI_SYCL_LIBDIR} ${ONEDNN_LIBDIR})
 
 # build onednn from source
-if(WITH_ONEDNN)
-  add_definitions(-DONEDNN)
-endif()
+#if(WITH_ONEDNN)
+#  add_definitions(-DONEDNN)
+#endif()
 
 add_definitions(-std=c++17)
 
@@ -93,10 +95,14 @@ else()
   target_link_libraries(${PLUGIN_NAME} PRIVATE ${PADDLE_CORE_LIB})
 endif()
 
+
+
+
 # link paddle shared library
-include(third_party)
-add_dependencies(${PLUGIN_NAME} third_party)
-target_link_libraries(${PLUGIN_NAME} PRIVATE ${PADDLE_CORE_LIB})
+#include(third_party)
+#add_dependencies(${PLUGIN_NAME} third_party)
+target_link_libraries(${PLUGIN_NAME} PRIVATE ${PADDLE_CORE_LIB} ${ONEAPI_SYCL_LIBDIR}/libsycl.so ${ONEDNN_LIBDIR}/libdnnl.so)
+
 
 if("${CMAKE_CXX_COMPILER}" STREQUAL "${DPCPP_COMPIER_PATH}")
   add_definitions(-DUSEDPCPP)
