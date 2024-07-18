@@ -43,7 +43,6 @@ std::recursive_mutex rmux;
 
 auto dcu_match = [](sycl::device &dev) -> bool {  // NOLINT
   unsigned int vendor_id = dev.get_info<sycl::info::device::vendor_id>();
-  std::cout<<"vendor_id: "<<vendor_id<<std::endl;
   return (vendor_id == 0x1002) ? true : false;
 };
 
