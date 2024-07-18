@@ -29,13 +29,15 @@ void FullValue(const phi::Context& dev_ctx,
   auto num = tensor->numel();
   show_debug("FullValue size=" << num << " sizeof(T)=" << sizeof(T));
   //auto e = q->submit([&](sycl::handler& h) { h.fill(t, val, num); });
-  std::cout<<"=========== call Full value =============="<<std::endl;
+  std::cout<<"=========== call Full value, Not Support =============="<<std::endl;
+  /*
   q->submit([&](sycl::handler& h) {
     h.parallel_for<class FullValue>(num, [out_data, val](sycl::id<1> i) {
       out_data[i] = val;
     });
   });
   q->wait();
+  */
 }
 
 template <typename T>

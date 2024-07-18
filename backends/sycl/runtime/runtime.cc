@@ -41,10 +41,11 @@ DeviceConfigPtr devconf;
 std::mutex mx;
 std::recursive_mutex rmux;
 
-/* auto intel_match = [](sycl::device &dev) -> bool {  // NOLINT
-  const auto name = dev.template get_info<sycl::info::device::name>();
-  return (name.find("Intel(R) Graphics") != std::string::npos) ? true : false;
-}; */
+auto dcu_match = [](sycl::device &dev) -> bool {  // NOLINT
+  unsigned int vendor_id = dev.get_info<sycl::info::device::vendor_id>();
+  std::cout<<"vendor_id: "<<vendor_id<<std::endl;
+  return (vendor_id == 0x1002) ? true : false;
+};
 
 struct DeviceCtx {
   sycl::device _dev;
@@ -144,9 +145,9 @@ C_Status GetDevicesCount(size_t *count) {
     InitializeDevConf();
     auto devices = sycl::device::get_devices(sycl::info::device_type::gpu);
 
-    std::copy(devices.begin(),
+    std::copy_if(devices.begin(),
                  devices.end(),
-                 std::back_inserter(reg_dev));
+                 std::back_inserter(reg_dev), dcu_match);
 
     if (!reg_dev.size()) {
       show_error("No GPUs found");
@@ -228,8 +229,9 @@ C_Status Allocate(const C_Device device, void **ptr, size_t size) {
 
   auto &stream = reg_dev[device->id].getStream();
 
-  *ptr = sycl::aligned_alloc_device(64, size, stream);
+  //*ptr = sycl::aligned_alloc_device(64, size, stream);
 
+  *ptr = sycl::malloc_shared(size, stream);
   if (!*ptr) {
     show_error("#### Error : Can't allocate memory size="
                << size << " free_mem_size="

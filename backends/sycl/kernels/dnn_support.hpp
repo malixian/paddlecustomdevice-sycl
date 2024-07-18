@@ -84,13 +84,14 @@ const T* shortPath(const T* p) {
 }
 
 #define show_msg(title, vbit, x)                                      \
-  if (devconf && devconf->plugin_verbose & vbit) {                    \
-    std::lock_guard<std::recursive_mutex> l(rmux);                    \
+//  if (devconf && devconf->plugin_verbose & vbit) {                    \
+{ \
+std::lock_guard<std::recursive_mutex> l(rmux);                    \
     std::cout << "[" << title << "][" << std::hex                     \
               << std::this_thread::get_id() << std::dec << "]["       \
               << shortPath(__FILE__) << ":" << __LINE__ << "]: " << x \
               << std::endl;                                           \
-  }
+}
 
 #define show_debug(x) \
   VLOG(5) << x;       \
