@@ -193,12 +193,9 @@ void SoftmaxKernel(const phi::Context& ctx,
     auto mem_src = dnnl::memory(md_src, eng, x_data);
     auto mem_dst = dnnl::memory(md_dst, eng, out_data);
 
-    //auto softmax_d = dnnl::softmax_forward::desc(
-    //    dnnl::prop_kind::forward_training, md_src, calc_axis);
-
     softmax_pd =
         std::make_shared<dnnl::softmax_forward::primitive_desc>(eng, dnnl::prop_kind::forward_training, \
-        dnnl::algorithm::softmax_accurate, md_src, md_dst, calc_axis);
+        dnnl::algorithm::softmax_accurate, md_src, md_dst, 1);
 
     auto softmax_prim = dnnl::softmax_forward(*softmax_pd);
     std::unordered_map<int, dnnl::memory> softmax_args;

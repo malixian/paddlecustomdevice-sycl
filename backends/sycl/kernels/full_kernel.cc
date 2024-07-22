@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <vector>
+
 #include "kernels/dnn_support.hpp"
 #include "paddle/phi/capi/all.h"
 
@@ -22,22 +24,20 @@ void FullValue(const phi::Context& dev_ctx,
                phi::DenseTensor* tensor,
                VType val) {
   show_kernel("FullValue type=" << dnn_support::type2String<T>::name());
-  //auto t = dev_ctx.template Alloc<T>(tensor);
   T* out_data = dev_ctx.Alloc<T>(tensor);
 
   auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   auto num = tensor->numel();
   show_debug("FullValue size=" << num << " sizeof(T)=" << sizeof(T));
-  //auto e = q->submit([&](sycl::handler& h) { h.fill(t, val, num); });
-  std::cout<<"=========== call Full value, Not Support =============="<<std::endl;
-  /*
-  q->submit([&](sycl::handler& h) {
-    h.parallel_for<class FullValue>(num, [out_data, val](sycl::id<1> i) {
-      out_data[i] = val;
-    });
-  });
+  std::cout<<"=========== call Full value Before =============="<<std::endl;
+  //auto e = q->submit([&](sycl::handler& h) { h.fill(out_data, val, num); });
+  
+  VType* data = new VType[num];
+  for(int i=0; i<num; i++) data[i] = val;
+  auto data_ptr = static_cast<const VType*>(data);
+  q->memcpy(out_data, data_ptr, tensor->memory_size());
   q->wait();
-  */
+  std::cout<<"=========== call Full value finish =============="<<std::endl;
 }
 
 template <typename T>
@@ -51,6 +51,7 @@ void FullKernel(const phi::Context& dev_ctx,
   FullValue<T>(dev_ctx, out, val.to<T>());
 }
 }  // namespace custom_kernel
+
 
 PD_BUILD_PHI_KERNEL(full,
                     SYCL,
