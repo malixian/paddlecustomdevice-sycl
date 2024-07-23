@@ -73,8 +73,8 @@ void MatmulKernel(const phi::Context& ctx,
 
 
 PD_BUILD_PHI_KERNEL(matmul,
-                          SYCL,
-                          ALL_LAYOUT,
-                          custom_kernel::MatmulKernel,
-                          float,
-                          phi::dtype::float16) {}
+                    SYCL,
+                    ALL_LAYOUT,
+                    custom_kernel::MatmulKernel,
+                    float,
+                    phi::dtype::float16) {}
