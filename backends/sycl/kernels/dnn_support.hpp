@@ -21,6 +21,10 @@
 #include <CL/sycl.hpp>
 #include "glog/logging.h"
 #include "oneapi/dnnl/dnnl_sycl.hpp"
+
+#include "kernels/phi_funcs.h"
+#include "paddle/phi/capi/all.h"
+
 // clang-format on
 namespace config {
 enum SUBSYS_LEVELS { vError = 16 };
@@ -139,6 +143,11 @@ struct toDnnType<float> {
 template <>
 struct toDnnType<char> {
   static const dnnl::memory::data_type type = dnnl::memory::data_type::bf16;
+};
+
+template <>
+struct toDnnType<phi::dtype::float16> {
+  static const dnnl::memory::data_type type = dnnl::memory::data_type::f16;
 };
 
 #ifdef CUSTOM_DNN
