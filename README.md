@@ -29,7 +29,7 @@ ninja -j 16
 ```
 
 ## 编译PaddleCustomDevice
-- [飞桨自定义接入硬件后端(SYCL)](backends/SYCL/README.md)
+- [飞桨自定义接入硬件后端(SYCL)](backends/sycl/README.md)
 
 
 # PaddleCustomDevice
@@ -48,7 +48,7 @@ ninja -j 16
 
 - [飞桨自定义接入硬件后端(昇腾NPU)](backends/npu/README_cn.md)
 - [飞桨自定义接入硬件后端(寒武纪MLU)](backends/mlu/README_cn.md)
-- [飞桨自定义接入硬件后端(英特尔GPU)](backends/SYCL/README.md)
+- [飞桨自定义接入硬件后端(英特尔GPU)](backends/sycl/README.md)
 - [飞桨自定义接入硬件后端(苹果MPS)](backends/mps/README.md)
 - [飞桨自定义接入硬件后端(壁仞GPU)](backends/biren_gpu/README_cn.md)
 - [飞桨自定义接入硬件后端(燧原GCU)](backends/gcu/README_cn.md)
