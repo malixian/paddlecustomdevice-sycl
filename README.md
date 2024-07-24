@@ -6,18 +6,18 @@
 - LLVM-SYCL是SYCL编程模型的编译器，oneDNN需要依赖于LLVM-SYCL。
 - LLVM-SYCL版本依赖于intel/llvm的llvm-nightly-2023-01-31分支
 - 编译方式：
-  \`\`\`
+```
   cd llvm-sycl
   mkdir build
   cd build
   python3 ../buildbot/configure.py --hip
   python3 ../buildbot/compile.py
-  \`\`\`
+```
 
 ## 编译oneDNN
 - 跨平台的统一DNN库，目前主要针对海光DCU进行适配
 
-\`\`\`
+```
 export CC=clang
 export CXX=clang++
 
@@ -25,8 +25,8 @@ mkdir build
 cd build
 cmake -DDNNL_CPU_RUNTIME=TBB -DDNNL_GPU_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Release \
       -DONEDNN_BUILD_TESTS=OFF -DDNNL_GPU_VENDOR=AMD -DONEDNN_BUILD_GRAPH=OFF -G Ninja ..
-#ninja -j 16
-\`\`\`
+ninja -j 16
+```
 
 ## 编译PaddleCustomDevice
 - [飞桨自定义接入硬件后端(SYCL)](backends/SYCL/README.md)
