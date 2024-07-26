@@ -30,8 +30,8 @@ void Conv2dKernel(const phi::Context& ctx,
                   int groups,
                   const std::string& data_format,
                   phi::DenseTensor* output) {
-
-    std::cout<<"=========== call oneDNN Conv Before =============="<<std::endl;
+    
+    
     dnnl::memory::dims strides_dims = {strides_t[0], strides_t[1]};
     dnnl::memory::dims padding_dims_l = {paddings_t[0], paddings_t[1]};
     dnnl::memory::dims padding_dims_r = {paddings_t[0], paddings_t[1]};
@@ -42,6 +42,9 @@ void Conv2dKernel(const phi::Context& ctx,
     auto src_dims = input.dims();
     auto weights_dims = filter.dims();
     auto dst_dims = output->dims();
+
+    show_kernel("Conv2dOneDNN()" << " type=" << dnn_support::type2String<T>::name());
+
 
     using tag = dnnl::memory::format_tag;
     using dt = dnnl::memory::data_type;
@@ -88,8 +91,6 @@ void Conv2dKernel(const phi::Context& ctx,
     conv_prim.execute(engine_stream, conv_args);
 
     engine_stream.wait();
-
-    std::cout<<"=========== call oneDNN Conv Finish =============="<<std::endl;
  
 }
 

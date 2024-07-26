@@ -18,6 +18,7 @@
 
 namespace custom_kernel {
 
+
 template <typename T>
 inline void UniformRealDistribution(T *data,
                                     const int64_t &size,
@@ -35,8 +36,8 @@ template <typename T>
 void UniformRandomRawKernel(const phi::Context &dev_ctx,
                             const phi::IntArray &shape,
                             phi::DataType dtype,
-                            const phi::Scalar &min,
-                            const phi::Scalar &max,
+                            float min,
+                            float max,
                             int seed,
                             int diag_num,
                             int diag_step,
@@ -61,7 +62,7 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
   engine->seed(seed);
 
   UniformRealDistribution<T>(
-      cpu_data, numel, min.to<float>(), max.to<float>(), engine);
+      cpu_data, numel, min, max, engine);
   if (diag_num > 0) {
     PD_CHECK(numel,
              (diag_num - 1) * (diag_step + 1),
@@ -84,30 +85,23 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
 }
 
 template <typename T>
-void UniformRandomKernel(const phi::Context &dev_ctx,
-                         const phi::IntArray &shape,
-                         phi::DataType dtype,
-                         //  float min,
-                         //  float max,
-                         const phi::Scalar &min,
-                         const phi::Scalar &max,
-                         int seed,
-                         phi::DenseTensor *out) {
+void GaussianKernel(const phi::Context &dev_ctx,
+                    const phi::IntArray &shape,
+                    float mean,
+                    float std,
+                    int seed,
+                    phi::DataType dtype,
+                    phi::DenseTensor* out) {
   show_kernel(
       "UniformRandom-SYCL type=" << dnn_support::type2String<T>::name());
   custom_kernel::UniformRandomRawKernel<T>(
-      dev_ctx, shape, dtype, min, max, seed, 0, 0, 0.0f, out);
+      dev_ctx, shape, dtype, mean, std, seed, 0, 0, 0.0f, out);
 }
 }  // namespace custom_kernel
 
-PD_BUILD_PHI_KERNEL(uniform_raw,
+PD_BUILD_PHI_KERNEL(gaussian,
                     SYCL,
                     ALL_LAYOUT,
-                    custom_kernel::UniformRandomRawKernel,
+                    custom_kernel::GaussianKernel,
                     float) {}
 
-PD_BUILD_PHI_KERNEL(uniform,
-                    SYCL,
-                    ALL_LAYOUT,
-                    custom_kernel::UniformRandomKernel,
-                    float) {}

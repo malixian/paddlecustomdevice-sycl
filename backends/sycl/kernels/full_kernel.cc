@@ -29,7 +29,7 @@ void FullValue(const phi::Context& dev_ctx,
   auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   auto num = tensor->numel();
   show_debug("FullValue size=" << num << " sizeof(T)=" << sizeof(T));
-  std::cout<<"=========== call Full value Before =============="<<std::endl;
+  //std::cout<<"=========== call Full value Before =============="<<std::endl;
   //auto e = q->submit([&](sycl::handler& h) { h.fill(out_data, val, num); });
   
   VType* data = new VType[num];
@@ -37,7 +37,7 @@ void FullValue(const phi::Context& dev_ctx,
   auto data_ptr = static_cast<const VType*>(data);
   q->memcpy(out_data, data_ptr, tensor->memory_size());
   q->wait();
-  std::cout<<"=========== call Full value finish =============="<<std::endl;
+  //std::cout<<"=========== call Full value finish =============="<<std::endl;
 }
 
 template <typename T>

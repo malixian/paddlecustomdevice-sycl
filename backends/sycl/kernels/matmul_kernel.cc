@@ -27,14 +27,14 @@ void MatmulKernel(const phi::Context& ctx,
                   bool transpose_y,
                   phi::DenseTensor* out) {
 
-    std::cout<<"=========== call oneDNN Matmul Before =============="<<std::endl;
-
     using tag = dnnl::memory::format_tag;
     using dt = dnnl::memory::data_type;
     auto* q = static_cast<sycl::queue*>(const_cast<void*>(ctx.stream()));
     auto eng =
         dnnl::sycl_interop::make_engine(q->get_device(), q->get_context());
     auto engine_stream = dnnl::sycl_interop::make_stream(eng, *q);
+
+    show_kernel("MatmulOneDNN()" << " type=" << dnn_support::type2String<T>::name());
 
     // Source (src), weights and destination (dst) tensors dimensions.
     auto x_data = x.data<T>();
@@ -64,8 +64,6 @@ void MatmulKernel(const phi::Context& ctx,
     // Execution.
     matmul_prim.execute(engine_stream, matmul_args);
     engine_stream.wait();
-
-    std::cout<<"=========== call oneDNN Matmul Finish =============="<<std::endl;
  
 }
 
