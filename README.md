@@ -32,6 +32,13 @@ ninja -j 16
 - [飞桨自定义接入硬件后端(SYCL)](backends/sycl/README.md)
 
 
+## 测试
+'''
+cd backends/sycl/tests
+python3 resnet\_test.py
+'''
+
+
 # PaddleCustomDevice
 
 简体中文 | [English](./README_en.md) | [日本語](./README_ja.md)
