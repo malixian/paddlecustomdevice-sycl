@@ -42,10 +42,10 @@ void RawCompareKernelSycl(const phi::Context& dev_ctx,
   auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   // if float_func == func only func is to be calculated
   if (float_func != func && std::is_floating_point<T>::value) {
-    q->parallel_for<class compare>(numel,
+    q->parallel_for(numel,
                     [=](auto& i) { float_func(x_data, y_data, out_data, i); });
   } else {
-    q->parallel_for<class compare>(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
+    q->parallel_for(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
   }
   q->wait();
 }

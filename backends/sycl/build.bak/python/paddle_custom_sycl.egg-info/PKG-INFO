@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: paddle-custom-sycl
+Version: 0.0.1
+Summary: Paddle CustomCPU plugin
+Author-email: Paddle-better@baidu.com
+Maintainer: PaddlePaddle
+Maintainer-email: Paddle-better@baidu.com
+License: Apache Software License
+Keywords: Paddle CustomCPU plugin
+Description-Content-Type: text/markdown

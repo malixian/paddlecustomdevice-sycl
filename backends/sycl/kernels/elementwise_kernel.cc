@@ -37,7 +37,7 @@ void MultiplyRawKernelGPU(const phi::Context& dev_ctx,
   auto input_y = y.data<T>();
 
   q->submit([&](sycl::handler& h) {
-    h.parallel_for<class ElementWise>(NOUT, [input_x, input_y, out_data](sycl::id<1> i) {
+    h.parallel_for(NOUT, [input_x, input_y, out_data](sycl::id<1> i) {
       out_data[i] = input_x[i] * input_y[i];
     });
   });

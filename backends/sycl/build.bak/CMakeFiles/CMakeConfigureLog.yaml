@@ -1,0 +1,567 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Linux - 5.4.0-109-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/local/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/3.29.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/local/bin/gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/3.29.2/CompilerIdC/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP"
+      binary: "/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP'
+        
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_13eb9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_13eb9.dir/build.make CMakeFiles/cmTC_13eb9.dir/build
+        gmake[1]: Entering directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP'
+        Building CXX object CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/local/bin/c++   -v -o CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/local/bin/c++
+        Target: x86_64-pc-linux-gnu
+        Configured with: ./configure --disable-multilib
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 14.0.0 20230620 (experimental) (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/'
+         /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_13eb9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccXKF3ro.s
+        GNU C++17 (GCC) version 14.0.0 20230620 (experimental) (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 14.0.0 20230620 (experimental), GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        ignoring duplicate directory "/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include
+         /opt/dtk/include
+         /opt/hyhal/include
+         /opt/dtk/llvm/include
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/x86_64-pc-linux-gnu
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/backward
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include
+         /usr/local/include
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: 7c6a2cf37f4c51e2742587c228a49c52
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/'
+         as -v --64 -o CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccXKF3ro.s
+        GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34
+        COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_13eb9
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13eb9.dir/link.txt --verbose=1
+        /usr/local/bin/c++  -v -Wl,-v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_13eb9
+        Using built-in specs.
+        COLLECT_GCC=/usr/local/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: ./configure --disable-multilib
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 14.0.0 20230620 (experimental) (GCC) 
+        COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_13eb9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_13eb9.'
+         /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cclvjv1M.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_13eb9 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o
+        collect2 version 14.0.0 20230620 (experimental)
+        /usr/bin/ld -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cclvjv1M.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_13eb9 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.34
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_13eb9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_13eb9.'
+        gmake[1]: Leaving directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:134 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+          add: [/opt/dtk/include]
+          add: [/opt/hyhal/include]
+          add: [/opt/dtk/llvm/include]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/x86_64-pc-linux-gnu]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/backward]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+          add: [/usr/local/include]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include] ==> [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+        collapse include dir [/opt/dtk/include] ==> [/opt/dtk/include]
+        collapse include dir [/opt/hyhal/include] ==> [/opt/hyhal/include]
+        collapse include dir [/opt/dtk/llvm/include] ==> [/opt/dtk/llvm/include]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0] ==> [/usr/local/include/c++/14.0.0]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/x86_64-pc-linux-gnu] ==> [/usr/local/include/c++/14.0.0/x86_64-pc-linux-gnu]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/backward] ==> [/usr/local/include/c++/14.0.0/backward]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include;/opt/dtk/include;/opt/hyhal/include;/opt/dtk/llvm/include;/usr/local/include/c++/14.0.0;/usr/local/include/c++/14.0.0/x86_64-pc-linux-gnu;/usr/local/include/c++/14.0.0/backward;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include;/usr/local/include;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_13eb9/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_13eb9.dir/build.make CMakeFiles/cmTC_13eb9.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-MGyjkP']
+        ignore line: [Building CXX object CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/local/bin/c++   -v -o CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/local/bin/c++]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ./configure --disable-multilib]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 14.0.0 20230620 (experimental) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/']
+        ignore line: [ /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_13eb9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccXKF3ro.s]
+        ignore line: [GNU C++17 (GCC) version 14.0.0 20230620 (experimental) (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 14.0.0 20230620 (experimental)  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [ignoring duplicate directory "/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+        ignore line: [ /opt/dtk/include]
+        ignore line: [ /opt/hyhal/include]
+        ignore line: [ /opt/dtk/llvm/include]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/x86_64-pc-linux-gnu]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../include/c++/14.0.0/backward]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 7c6a2cf37f4c51e2742587c228a49c52]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccXKF3ro.s]
+        ignore line: [GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34]
+        ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_13eb9]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13eb9.dir/link.txt --verbose=1]
+        ignore line: [/usr/local/bin/c++  -v -Wl -v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_13eb9]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/local/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ./configure --disable-multilib]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 14.0.0 20230620 (experimental) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_13eb9' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_13eb9.']
+        link line: [ /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cclvjv1M.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_13eb9 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o]
+          arg [/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cclvjv1M.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_13eb9] ==> ignore
+          arg [/lib/x86_64-linux-gnu/crt1.o] ==> obj [/lib/x86_64-linux-gnu/crt1.o]
+          arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
+          arg [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o] ==> obj [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o] ==> obj [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o]
+          arg [/lib/x86_64-linux-gnu/crtn.o] ==> obj [/lib/x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 14.0.0 20230620 (experimental)]
+        ignore line: [/usr/bin/ld -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cclvjv1M.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_13eb9 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_13eb9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o]
+        linker tool for 'CXX': /usr/bin/ld
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0]
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64] ==> [/usr/local/lib64]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..] ==> [/usr/local/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/lib/x86_64-linux-gnu/crt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o;/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0;/usr/local/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib64;/usr/local/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the CXX compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.34
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP"
+      binary: "/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP'
+        
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_64092/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_64092.dir/build.make CMakeFiles/cmTC_64092.dir/build
+        gmake[1]: Entering directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP'
+        Building C object CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o
+        /usr/local/bin/gcc   -v -o CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/local/bin/gcc
+        Target: x86_64-pc-linux-gnu
+        Configured with: ./configure --disable-multilib
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 14.0.0 20230620 (experimental) (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/'
+         /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_64092.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccXmIfds.s
+        GNU C17 (GCC) version 14.0.0 20230620 (experimental) (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 14.0.0 20230620 (experimental), GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        ignoring duplicate directory "/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include
+         /opt/dtk/include
+         /opt/hyhal/include
+         /opt/dtk/llvm/include
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include
+         /usr/local/include
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu
+         /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: f77a004952897bcd693a94e29695f623
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/'
+         as -v --64 -o CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o /tmp/ccXmIfds.s
+        GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34
+        COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_64092
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64092.dir/link.txt --verbose=1
+        /usr/local/bin/gcc  -v -Wl,-v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -o cmTC_64092
+        Using built-in specs.
+        COLLECT_GCC=/usr/local/bin/gcc
+        COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: ./configure --disable-multilib
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 14.0.0 20230620 (experimental) (GCC) 
+        COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/
+        LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_64092' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_64092.'
+         /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxKqYwT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64092 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o
+        collect2 version 14.0.0 20230620 (experimental)
+        /usr/bin/ld -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxKqYwT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64092 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.34
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_64092' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_64092.'
+        gmake[1]: Leaving directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:134 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+          add: [/opt/dtk/include]
+          add: [/opt/hyhal/include]
+          add: [/opt/dtk/llvm/include]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+          add: [/usr/local/include]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+          add: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include] ==> [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+        collapse include dir [/opt/dtk/include] ==> [/opt/dtk/include]
+        collapse include dir [/opt/hyhal/include] ==> [/opt/hyhal/include]
+        collapse include dir [/opt/dtk/llvm/include] ==> [/opt/dtk/llvm/include]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+        collapse include dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include;/opt/dtk/include;/opt/hyhal/include;/opt/dtk/llvm/include;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include;/usr/local/include;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_64092/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_64092.dir/build.make CMakeFiles/cmTC_64092.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/CMakeScratch/TryCompile-4YRbtP']
+        ignore line: [Building C object CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/local/bin/gcc   -v -o CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/local/bin/gcc]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ./configure --disable-multilib]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 14.0.0 20230620 (experimental) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/']
+        ignore line: [ /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-3.29/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_64092.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/ccXmIfds.s]
+        ignore line: [GNU C17 (GCC) version 14.0.0 20230620 (experimental) (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 14.0.0 20230620 (experimental)  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [ignoring duplicate directory "/home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /home/mlx/repos/paddle-onednn-dev/oneTBB/oneTBB_install/include]
+        ignore line: [ /opt/dtk/include]
+        ignore line: [ /opt/hyhal/include]
+        ignore line: [ /opt/dtk/llvm/include]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed/x86_64-linux-gnu]
+        ignore line: [ /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/include-fixed]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: f77a004952897bcd693a94e29695f623]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o /tmp/ccXmIfds.s]
+        ignore line: [GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34]
+        ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_64092]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64092.dir/link.txt --verbose=1]
+        ignore line: [/usr/local/bin/gcc  -v -Wl -v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -o cmTC_64092]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/local/bin/gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ./configure --disable-multilib]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 14.0.0 20230620 (experimental) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64/:/lib/x86_64-linux-gnu/:/lib/../lib64/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_64092' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_64092.']
+        link line: [ /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxKqYwT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64092 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o]
+          arg [/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccxKqYwT.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_64092] ==> ignore
+          arg [/lib/x86_64-linux-gnu/crt1.o] ==> obj [/lib/x86_64-linux-gnu/crt1.o]
+          arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
+          arg [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o] ==> obj [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..] ==> dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o] ==> obj [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o]
+          arg [/lib/x86_64-linux-gnu/crtn.o] ==> obj [/lib/x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 14.0.0 20230620 (experimental)]
+        ignore line: [/usr/bin/ld -plugin /usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-pc-linux-gnu/14.0.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxKqYwT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64092 /lib/x86_64-linux-gnu/crt1.o /lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../.. -v CMakeFiles/cmTC_64092.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o /lib/x86_64-linux-gnu/crtn.o]
+        linker tool for 'C': /usr/bin/ld
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0] ==> [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0]
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../../../lib64] ==> [/usr/local/lib64]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/../../..] ==> [/usr/local/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/lib/x86_64-linux-gnu/crt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtbegin.o;/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0/crtend.o;/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/local/lib/gcc/x86_64-pc-linux-gnu/14.0.0;/usr/local/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib64;/usr/local/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the C compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.34
+...

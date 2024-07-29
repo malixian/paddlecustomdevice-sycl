@@ -289,6 +289,11 @@ struct type2String<signed char> {
   constexpr static const char* name() { return "signed char"; }
 };
 
+template <>
+struct type2String<phi::dtype::float16> {
+  constexpr static const char* name() { return "float16"; }
+};
+
 template <class T>
 dnnl::memory::dims computeStrides(const std::vector<int64_t>& dims,
                                   const std::vector<T>& axis) {

@@ -1,0 +1,12 @@
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/paddle-custom-sycl.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/python_package.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/python_tests.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/test.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/edit_cache.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/CMakeFiles/rebuild_cache.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/CMakeFiles/test.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/CMakeFiles/edit_cache.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/CMakeFiles/rebuild_cache.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/unittests/CMakeFiles/test.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/unittests/CMakeFiles/edit_cache.dir
+/home/mlx/repos/paddle-onednn-dev/paddlecustomdevice-onednn/backends/sycl/build/tests/unittests/CMakeFiles/rebuild_cache.dir
