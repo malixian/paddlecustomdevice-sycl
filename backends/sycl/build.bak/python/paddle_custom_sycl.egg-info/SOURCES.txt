@@ -1,9 +1,0 @@
-setup.py
-python/paddle_custom_device/libpaddle-custom-sycl.so
-python/paddle_custom_sycl.egg-info/PKG-INFO
-python/paddle_custom_sycl.egg-info/SOURCES.txt
-python/paddle_custom_sycl.egg-info/dependency_links.txt
-python/paddle_custom_sycl.egg-info/not-zip-safe
-python/paddle_custom_sycl.egg-info/top_level.txt
-tests/test_MNIST_model.py
-tests/test_mean_op.py
