@@ -227,10 +227,12 @@ PD_BUILD_PHI_KERNEL(softmax,
                     ALL_LAYOUT,
                     custom_kernel::SoftmaxKernel,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(softmax_grad,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::SoftmaxGradKernel,
-                    float) {}
+                    float,
+                    phi::dtype::float16) {}

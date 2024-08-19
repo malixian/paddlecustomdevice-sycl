@@ -85,7 +85,8 @@ PD_BUILD_PHI_KERNEL(assign_value,
                     int,
                     int64_t,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(assign_raw,
                     SYCL,
@@ -94,4 +95,5 @@ PD_BUILD_PHI_KERNEL(assign_raw,
                     int,
                     int64_t,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}

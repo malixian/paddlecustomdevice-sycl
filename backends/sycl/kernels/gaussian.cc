@@ -61,7 +61,7 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
   engine = std::make_shared<std::mt19937>();
   engine->seed(seed);
 
-  UniformRealDistribution<T>(
+  UniformRealDistribution<float>(
       cpu_data, numel, min, max, engine);
   if (diag_num > 0) {
     PD_CHECK(numel,
@@ -94,7 +94,7 @@ void GaussianKernel(const phi::Context &dev_ctx,
                     phi::DenseTensor* out) {
   show_kernel(
       "UniformRandom-SYCL type=" << dnn_support::type2String<T>::name());
-  custom_kernel::UniformRandomRawKernel<T>(
+  custom_kernel::UniformRandomRawKernel<float>(
       dev_ctx, shape, dtype, mean, std, seed, 0, 0, 0.0f, out);
 }
 }  // namespace custom_kernel
@@ -103,5 +103,6 @@ PD_BUILD_PHI_KERNEL(gaussian,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::GaussianKernel,
-                    float) {}
+                    float,
+                    phi::dtype::float16) {}
 

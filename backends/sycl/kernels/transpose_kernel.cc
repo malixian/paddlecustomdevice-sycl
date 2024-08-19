@@ -94,4 +94,5 @@ PD_BUILD_PHI_KERNEL(transpose,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::TransposeKernelGPU,
-                    float) {}
+                    float,
+                    phi::dtype::float16) {}

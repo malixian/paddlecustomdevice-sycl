@@ -87,15 +87,24 @@ const T* shortPath(const T* p) {
   return r;
 }
 
-#define show_msg(title, vbit, x)                                      \
-//  if (devconf && devconf->plugin_verbose & vbit) {                    \
+/* #define show_msg(title, vbit, x)                                      \
+if (devconf && devconf->plugin_verbose & vbit)                    \
 { \
 std::lock_guard<std::recursive_mutex> l(rmux);                    \
     std::cout << "[" << title << "][" << std::hex                     \
               << std::this_thread::get_id() << std::dec << "]["       \
               << shortPath(__FILE__) << ":" << __LINE__ << "]: " << x \
               << std::endl;                                           \
-}
+} */
+
+#define show_msg(title, vbit, x)                                      \
+{                                                                     \
+std::lock_guard<std::recursive_mutex> l(rmux);                        \
+    std::cout << "[" << title << "][" << std::hex                     \
+              << std::this_thread::get_id() << std::dec << "]["       \
+              << shortPath(__FILE__) << ":" << __LINE__ << "]: " << x \
+              << std::endl;                                           \
+} 
 
 #define show_debug(x) \
   VLOG(5) << x;       \
@@ -210,7 +219,8 @@ dnnl::memory::format_tag axis2Tag(const T& d) {
         return dnnl::memory::format_tag::abc;
       }
 
-      rise_error("Can't convert tag for " << d);
+      // rise_error("Can't convert tag for " << d);
+      return dnnl::memory::format_tag::abc;
 
     case 4:
 
@@ -229,13 +239,15 @@ dnnl::memory::format_tag axis2Tag(const T& d) {
       if (d == T{0, 1, 2, 3}) {
         return dnnl::memory::format_tag::abcd;
       }
-      rise_error("Can't convert tag for " << d);
+      //rise_error("Can't convert tag for " << d);
+      return dnnl::memory::format_tag::abcd;
 
     case 5:
 
       if (d == T{0, 1, 2, 3, 4}) {
         return dnnl::memory::format_tag::abcde;
       }
+      return dnnl::memory::format_tag::abcde;
 
       rise_error("Can't convert tag for " << d);
 

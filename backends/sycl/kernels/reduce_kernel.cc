@@ -211,21 +211,21 @@ void MinKernel(const phi::Context& dev_ctx,
 }  // namespace custom_kernel
 
 PD_BUILD_PHI_KERNEL(
-    mean_raw, SYCL, ALL_LAYOUT, custom_kernel::MeanRawKernel, float) {}
+    mean_raw, SYCL, ALL_LAYOUT, custom_kernel::MeanRawKernel, float, phi::dtype::float16) {}
 PD_BUILD_PHI_KERNEL(
-    mean, SYCL, ALL_LAYOUT, custom_kernel::MeanKernel, float) {}
+    mean, SYCL, ALL_LAYOUT, custom_kernel::MeanKernel, float, phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(
-    sum_raw, SYCL, ALL_LAYOUT, custom_kernel::SumRawKernel, float) {}
+    sum_raw, SYCL, ALL_LAYOUT, custom_kernel::SumRawKernel, float, phi::dtype::float16) {}
 PD_BUILD_PHI_KERNEL(
-    sum, SYCL, ALL_LAYOUT, custom_kernel::SumKernel, float) {}
+    sum, SYCL, ALL_LAYOUT, custom_kernel::SumKernel, float, phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(
-    min_raw, SYCL, ALL_LAYOUT, custom_kernel::MinRawKernel, float) {}
+    min_raw, SYCL, ALL_LAYOUT, custom_kernel::MinRawKernel, float, phi::dtype::float16) {}
 PD_BUILD_PHI_KERNEL(
-    min, SYCL, ALL_LAYOUT, custom_kernel::MinKernel, float) {}
+    min, SYCL, ALL_LAYOUT, custom_kernel::MinKernel, float, phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(
-    max_raw, SYCL, ALL_LAYOUT, custom_kernel::MaxRawKernel, float) {}
+    max_raw, SYCL, ALL_LAYOUT, custom_kernel::MaxRawKernel, float, phi::dtype::float16) {}
 PD_BUILD_PHI_KERNEL(
-    max, SYCL, ALL_LAYOUT, custom_kernel::MaxKernel, float) {}
+    max, SYCL, ALL_LAYOUT, custom_kernel::MaxKernel, float, phi::dtype::float16) {}

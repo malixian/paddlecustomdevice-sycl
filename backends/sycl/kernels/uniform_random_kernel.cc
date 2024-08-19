@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#include <random>
 
 #include "kernels/dnn_support.hpp"
 #include "paddle/phi/capi/all.h"
@@ -22,12 +21,10 @@ template <typename T>
 inline void UniformRealDistribution(T *data,
                                     const int64_t &size,
                                     const float &min,
-                                    const float &max,
-                                    std::shared_ptr<std::mt19937> engine) {
-  std::uniform_real_distribution<T> dist(static_cast<T>(min),
-                                         static_cast<T>(max));
+                                    const float &max) {
+  
   for (int64_t i = 0; i < size; ++i) {
-    data[i] = dist(*engine);
+    data[i] = 0.1;
   }
 }
 
@@ -56,12 +53,8 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
   cpu_out.set_dtype(out->dtype());
   auto cpu_data = dev_ctx.template HostAlloc<T>(&cpu_out);
 
-  std::shared_ptr<std::mt19937> engine;
-  engine = std::make_shared<std::mt19937>();
-  engine->seed(seed);
-
   UniformRealDistribution<T>(
-      cpu_data, numel, min.to<float>(), max.to<float>(), engine);
+      cpu_data, numel, min.to<float>(), max.to<float>());
   if (diag_num > 0) {
     PD_CHECK(numel,
              (diag_num - 1) * (diag_step + 1),
@@ -104,10 +97,14 @@ PD_BUILD_PHI_KERNEL(uniform_raw,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::UniformRandomRawKernel,
-                    float) {}
+                    float,
+                    phi::dtype::float16
+                    ) {}
 
 PD_BUILD_PHI_KERNEL(uniform,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::UniformRandomKernel,
-                    float) {}
+                    float,
+                    phi::dtype::float16
+                    ) {}

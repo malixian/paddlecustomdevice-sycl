@@ -173,7 +173,8 @@ PD_BUILD_PHI_KERNEL(reshape,
                     int32_t,
                     int64_t,
                     uint8_t,
-                    bool) {}
+                    bool,
+                    phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(reshape_with_xshape,
                     SYCL,
@@ -186,4 +187,5 @@ PD_BUILD_PHI_KERNEL(reshape_with_xshape,
                     int32_t,
                     int64_t,
                     uint8_t,
-                    bool) {}
+                    bool,
+                    phi::dtype::float16) {}

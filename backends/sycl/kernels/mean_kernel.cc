@@ -70,11 +70,13 @@ PD_BUILD_PHI_KERNEL(mean_all,
                     ALL_LAYOUT,
                     custom_kernel::MeanAllKernel,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(mean_all_grad,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::MeanAllGradKernel,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}

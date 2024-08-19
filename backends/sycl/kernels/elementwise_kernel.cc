@@ -74,7 +74,11 @@ void MultiplyOneDNNRawKernel(const phi::Context& dev_ctx,
   dnnl::memory::dims dims_y = y.dims();
   dnnl::memory::dims dims_out = out->dims();
 
-  phi::update_broadcast(dims_x, dims_y, axis);
+  //phi::update_broadcast(dims_x, dims_y, axis);
+
+  std::cout<<dims_x<<std::endl;
+  std::cout<<dims_y<<std::endl;
+  std::cout<<dims_out<<std::endl;
 
   auto md_x = dnnl::memory::desc(
       dims_x, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(dims_x));
@@ -82,8 +86,7 @@ void MultiplyOneDNNRawKernel(const phi::Context& dev_ctx,
   auto md_y = dnnl::memory::desc(
       dims_y, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(dims_y));
   auto md_out = dnnl::memory::desc(dims_out,
-                                   dnn_support::toDnnType<T>::type,
-                                   dnn_support::dims2Tag(dims_out));
+                                   dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(dims_out));
 
   auto x_mem = dnnl::memory(md_x, eng, x.data<T>());
   auto y_mem = dnnl::memory(md_y, eng, y.data<T>());
@@ -147,7 +150,8 @@ PD_BUILD_PHI_KERNEL(multiply_raw,
                     int32_t,
                     int64_t,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}
 
 PD_BUILD_PHI_KERNEL(multiply,
                     SYCL,
@@ -156,4 +160,5 @@ PD_BUILD_PHI_KERNEL(multiply,
                     int32_t,
                     int64_t,
                     float,
-                    double) {}
+                    double,
+                    phi::dtype::float16) {}

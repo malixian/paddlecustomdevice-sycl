@@ -261,7 +261,7 @@ void GreaterEqualKernel(const phi::Context& dev_ctx,
 
 #define PD_REGISTER_COMPARE_KERNEL(name, func)            \
   PD_BUILD_PHI_KERNEL(name,                               \
-                      SYCL,                          \
+                      SYCL,                               \
                       ALL_LAYOUT,                         \
                       custom_kernel::func##Kernel,        \
                       float,                              \
@@ -270,7 +270,8 @@ void GreaterEqualKernel(const phi::Context& dev_ctx,
                       int16_t,                            \
                       int32_t,                            \
                       int64_t,                            \
-                      bool) {}
+                      bool,                               \
+                      phi::dtype::float16) {}
 PD_REGISTER_COMPARE_KERNEL(less_equal, LessEqual)
 PD_REGISTER_COMPARE_KERNEL(greater_than, GreaterThan)
 PD_REGISTER_COMPARE_KERNEL(greater_equal, GreaterEqual)
