@@ -25,7 +25,7 @@ inline void UniformRealDistribution(T *data,
   
   for (int64_t i = 0; i < size; ++i) {
     data[i] = 0.1;
-  }
+  } 
 }
 
 template <typename T>

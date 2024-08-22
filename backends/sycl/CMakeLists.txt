@@ -74,7 +74,7 @@ link_directories(${PADDLE_LIB_DIR} ${ONEAPI_SYCL_LIBDIR} ${ONEDNN_LIBDIR})
 #  add_definitions(-DONEDNN)
 #endif()
 
-add_definitions(-std=c++17 -fsycl -fsycl-unnamed-lambda)
+add_definitions(-std=c++17 -fsycl -fsycl-unnamed-lambda -Waddress-of-temporary)
 
 # custom kernels
 file(

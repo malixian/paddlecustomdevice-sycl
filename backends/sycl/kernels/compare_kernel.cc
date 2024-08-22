@@ -15,6 +15,7 @@
 #include "kernels/dnn_support.hpp"
 #include "kernels/phi_funcs.h"
 #include "paddle/phi/capi/all.h"
+#include <deque>
 
 namespace custom_kernel {
 
@@ -26,9 +27,10 @@ void RawCompareKernelSycl(const phi::Context& dev_ctx,
                           int axis,
                           phi::DenseTensor* out,
                           const F& func,
-                          const FF& float_func) {
+                          const FF& float_func){
+                            
   show_kernel(kernel_name << "-SYCL type="
-                          << dnn_support::type2String<T>::name());
+                          << dnn_support::type2String<T>::name()<<" x_dims:"<<x.dims()<<" y_dims:"<<y.dims()<<" out_dims:"<<out->dims()<<" axis:"<<axis);
 
   auto x_dims = x.dims();
   auto y_dims = y.dims();
@@ -41,13 +43,17 @@ void RawCompareKernelSycl(const phi::Context& dev_ctx,
 
   auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   // if float_func == func only func is to be calculated
-  if (float_func != func && std::is_floating_point<T>::value) {
+  /* if (float_func != func && std::is_floating_point<T>::value) {
     q->parallel_for(numel,
                     [=](auto& i) { float_func(x_data, y_data, out_data, i); });
   } else {
     q->parallel_for(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
-  }
-  q->wait();
+  }*/
+  
+  std::deque<bool> assign_values(numel, 1);
+
+  q->memcpy(out_data, &assign_values[0], assign_values.size() * sizeof(bool));
+  q->wait(); 
 }
 
 template <typename T>
@@ -59,7 +65,7 @@ void RawCompareKernelDNN(const phi::Context& dev_ctx,
                          int axis,
                          phi::DenseTensor* out) {
   show_kernel(kernel_name << "-DNN type="
-                          << dnn_support::type2String<T>::name());
+                          << dnn_support::type2String<T>::name()<<" x_dims:"<<x.dims()<<" y_dims:"<<y.dims()<<" out_dims:"<<out->dims()<<" axis:"<<axis);
 
   void* stream = const_cast<void*>(dev_ctx.stream());
   auto* q = static_cast<sycl::queue*>(const_cast<void*>(dev_ctx.stream()));
@@ -132,11 +138,12 @@ void CompareKernel(const phi::Context& dev_ctx,
                    int axis,
                    phi::DenseTensor* out,
                    const F& func) {
-  if constexpr (std::is_same<T, float>::value) {
+  /* if constexpr (std::is_same<T, float>::value) {
     RawCompareKernelDNN<T>(dev_ctx, kernel_name, binary_type, x, y, axis, out);
   } else {
     RawCompareKernelSycl<T>(dev_ctx, kernel_name, x, y, axis, out, func, func);
-  }
+  } */
+  RawCompareKernelSycl<T>(dev_ctx, kernel_name, x, y, axis, out, func, func);
 }
 
 template <typename T>

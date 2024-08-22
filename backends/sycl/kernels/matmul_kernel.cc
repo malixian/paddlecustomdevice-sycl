@@ -34,16 +34,43 @@ void MatmulKernel(const phi::Context& ctx,
         dnnl::sycl_interop::make_engine(q->get_device(), q->get_context());
     auto engine_stream = dnnl::sycl_interop::make_stream(eng, *q);
 
-    show_kernel("MatmulOneDNN()" << " type=" << dnn_support::type2String<T>::name());
+    show_kernel("MatmulOneDNN()" << " type=" << dnn_support::type2String<T>::name() << " x dims="<<x.dims()<< " y dims="<<y.dims()<<" out dims="<<out->dims());
 
     // Source (src), weights and destination (dst) tensors dimensions.
     auto x_data = x.data<T>();
     auto y_data = y.data<T>();
     auto out_data = ctx.template Alloc<T>(out);
 
-    auto src_md = dnnl::memory::desc(x.dims(), dnn_support::toDnnType<T>::type, tag::ab);
-    auto weights_md = dnnl::memory::desc(y.dims(), dnn_support::toDnnType<T>::type, tag::ab);
-    auto dst_md = dnnl::memory::desc(out->dims(), dnn_support::toDnnType<T>::type, tag::ab);
+    auto x_dims = x.dims();
+    auto y_dims = y.dims();
+    auto out_dims = out->dims();
+
+    phi::update_broadcast(y_dims, out_dims, -1);
+
+    std::cout<<"broadcast y_dims: "<<y_dims<<std::endl;
+
+    
+    if (x_dims.size() > 3 && x_dims[0] == 1) {
+        std::vector<int64_t> tmp(3, 1);
+        for(int i=0; i<3; i++) tmp[i] = x_dims[i+1];
+        x_dims = tmp;
+    }
+    if (y_dims.size() > 3 && y_dims[0] == 1) {
+        std::vector<int64_t> tmp(3, 1);
+        for(int i=0; i<3; i++) tmp[i] = y_dims[i+1];
+        y_dims = tmp;
+    }
+    if (out_dims.size() > 3 && out_dims[0] == 1) {
+        std::vector<int64_t> tmp(3, 1);
+        for(int i=0; i<3; i++) tmp[i] = out_dims[i+1];
+        out_dims = tmp;
+    }
+
+    std::cout<<"reduced dims: "<<x_dims<<" "<<y_dims<<" "<<out_dims<<std::endl;
+
+    auto src_md = dnnl::memory::desc(x_dims, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(x_dims));
+    auto weights_md = dnnl::memory::desc(y_dims, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(y_dims));
+    auto dst_md = dnnl::memory::desc(out_dims, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(out_dims));
 
     auto src_mem = dnnl::memory(src_md, eng, x_data);
     auto weights_mem = dnnl::memory(weights_md, eng, y_data);

@@ -74,11 +74,34 @@ void MultiplyOneDNNRawKernel(const phi::Context& dev_ctx,
   dnnl::memory::dims dims_y = y.dims();
   dnnl::memory::dims dims_out = out->dims();
 
-  //phi::update_broadcast(dims_x, dims_y, axis);
+  std::cout<<dims_x<<std::endl;
+  std::cout<<dims_y<<std::endl;
+  std::cout<<dims_out<<std::endl;
+
+  phi::update_broadcast(dims_x, dims_y, axis);
+
+  std::cout<<"============= broadcast ========"<<std::endl;
 
   std::cout<<dims_x<<std::endl;
   std::cout<<dims_y<<std::endl;
   std::cout<<dims_out<<std::endl;
+
+  dnnl::memory::dims tmp_dims;
+
+  for(int i=0; i<dims_x.size(); i++) {
+    if(dims_x[i] < dims_y[i]) {
+      tmp_dims = dims_x;
+      dims_x = dims_y;
+      dims_y = tmp_dims;
+      dims_out = dims_x;
+      break;
+    }
+  }
+  std::cout<<"============= exchange ========="<<std::endl;
+  std::cout<<dims_x<<std::endl;
+  std::cout<<dims_y<<std::endl;
+  std::cout<<dims_out<<std::endl;
+
 
   auto md_x = dnnl::memory::desc(
       dims_x, dnn_support::toDnnType<T>::type, dnn_support::dims2Tag(dims_x));

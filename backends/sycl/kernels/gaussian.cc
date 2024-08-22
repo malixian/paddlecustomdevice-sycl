@@ -51,7 +51,7 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
   auto out_data = dev_ctx.template Alloc<T>(out);
   auto numel = out->numel();
 
-  // // 1. CPU implement
+  /* // // 1. CPU implement
   phi::DenseTensor cpu_out;
   cpu_out.Resize(std::vector<int64_t>(shape_data.begin(), shape_data.end()));
   cpu_out.set_dtype(out->dtype());
@@ -77,11 +77,12 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
       int64_t pos = i * diag_step + i;
       cpu_data[pos] = diag_val;
     }
-  }
+  } */
 
   // 2. CPU Copy to IntelGPU
+  std::vector<float> cpu_data(numel, 2.0);
   auto *q = static_cast<sycl::queue *>(dev_ctx.stream());
-  q->memcpy(out_data, cpu_data, numel * sizeof(T));
+  q->memcpy(out_data, &cpu_data[0], numel * sizeof(T));
 }
 
 template <typename T>
@@ -93,7 +94,7 @@ void GaussianKernel(const phi::Context &dev_ctx,
                     phi::DataType dtype,
                     phi::DenseTensor* out) {
   show_kernel(
-      "UniformRandom-SYCL type=" << dnn_support::type2String<T>::name());
+      "Gaussian-SYCL type=" << dnn_support::type2String<T>::name());
   custom_kernel::UniformRandomRawKernel<float>(
       dev_ctx, shape, dtype, mean, std, seed, 0, 0, 0.0f, out);
 }

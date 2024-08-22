@@ -98,6 +98,7 @@ std::lock_guard<std::recursive_mutex> l(rmux);                    \
 } */
 
 #define show_msg(title, vbit, x)                                      \
+if (title == "kernel")                                                \
 {                                                                     \
 std::lock_guard<std::recursive_mutex> l(rmux);                        \
     std::cout << "[" << title << "][" << std::hex                     \
