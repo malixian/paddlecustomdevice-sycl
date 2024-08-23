@@ -18,7 +18,7 @@
 #include <algorithm>
 #include <utility>
 #include <vector>
-#include <CL/sycl.hpp>
+#include <sycl/sycl.hpp>
 #include "glog/logging.h"
 #include "oneapi/dnnl/dnnl_sycl.hpp"
 
@@ -146,6 +146,24 @@ struct toDnnType<int> {
 };
 
 template <>
+struct toDnnType<uint8_t> {
+  static const dnnl::memory::data_type type = dnnl::memory::data_type::u8;
+};
+
+
+template <>
+struct toDnnType<int16_t> {
+  static const dnnl::memory::data_type type = dnnl::memory::data_type::s32;
+};
+
+
+template <>
+struct toDnnType<int64_t> {
+  static const dnnl::memory::data_type type = dnnl::memory::data_type::s32;
+};
+
+
+template <>
 struct toDnnType<float> {
   static const dnnl::memory::data_type type = dnnl::memory::data_type::f32;
 };
@@ -160,14 +178,16 @@ struct toDnnType<phi::dtype::float16> {
   static const dnnl::memory::data_type type = dnnl::memory::data_type::f16;
 };
 
-#ifdef CUSTOM_DNN
-
 template <>
 struct toDnnType<double> {
   static const dnnl::memory::data_type type = dnnl::memory::data_type::f64;
 };
 
-#endif
+template <>
+struct toDnnType<bool> {
+  static const dnnl::memory::data_type type = dnnl::memory::data_type::u8;
+};
+
 
 template <class T = dnnl::memory::dims>
 dnnl::memory::format_tag dims2Tag(const T& d) {

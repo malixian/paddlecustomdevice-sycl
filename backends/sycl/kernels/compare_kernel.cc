@@ -28,35 +28,16 @@ void RawCompareKernelSycl(const phi::Context& dev_ctx,
                           phi::DenseTensor* out,
                           const F& func,
                           const FF& float_func){
-                            
-  show_kernel(kernel_name << "-SYCL type="
-                          << dnn_support::type2String<T>::name()<<" x_dims:"<<x.dims()<<" y_dims:"<<y.dims()<<" out_dims:"<<out->dims()<<" axis:"<<axis);
+  std::cout<<"row compare kernel sycl"<<std::endl;    
+  //show_kernel(kernel_name << "-SYCL type="
+  //                        << dnn_support::type2String<T>::name()<<" x_dims:"<<x.dims()<<" y_dims:"<<y.dims()<<" out_dims:"<<out->dims()<<" axis:"<<axis);
 
-  auto x_dims = x.dims();
-  auto y_dims = y.dims();
-  auto dst_dims = phi::BroadcastDims(axis, x_dims, y_dims);
-
-  auto x_data = x.data<T>();
-  auto y_data = y.data<T>();
-  auto out_data = dev_ctx.template Alloc<bool>(out);
-  auto numel = out->numel();
-
-  auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
-  // if float_func == func only func is to be calculated
-  /* if (float_func != func && std::is_floating_point<T>::value) {
-    q->parallel_for(numel,
-                    [=](auto& i) { float_func(x_data, y_data, out_data, i); });
-  } else {
-    q->parallel_for(numel, [=](auto& i) { func(x_data, y_data, out_data, i); });
-  }*/
-  
-  std::deque<bool> assign_values(numel, 1);
-
-  q->memcpy(out_data, &assign_values[0], assign_values.size() * sizeof(bool));
-  q->wait(); 
+  std::cout<<"-SYCL type="<< dnn_support::type2String<T>::name()<<" x_dims:"<<x.dims()<<" y_dims:"<<y.dims()<<std::endl;
+  *out = y;
+   std::cout<<" fake compare"<<std::endl;
 }
 
-template <typename T>
+/* template <typename T>
 void RawCompareKernelDNN(const phi::Context& dev_ctx,
                          std::string kernel_name,
                          dnnl::algorithm binary_type,
@@ -109,7 +90,7 @@ void RawCompareKernelDNN(const phi::Context& dev_ctx,
 
   prim.execute(engine_stream, binary_args);
   engine_stream.wait();
-}
+} */
 
 template <typename T, typename F, typename FF>
 void EqualityKernel(const phi::Context& dev_ctx,
@@ -121,12 +102,10 @@ void EqualityKernel(const phi::Context& dev_ctx,
                     phi::DenseTensor* out,
                     const F& func,
                     const FF& float_func) {
-  if constexpr (std::is_same<T, float>::value) {
-    RawCompareKernelDNN<T>(dev_ctx, kernel_name, binary_type, x, y, axis, out);
-  } else {
-    RawCompareKernelSycl<T>(
-        dev_ctx, kernel_name, x, y, axis, out, float_func, func);
-  }
+  
+  RawCompareKernelSycl<T>(
+      dev_ctx, kernel_name, x, y, axis, out, float_func, func);
+  
 }
 
 template <typename T, typename F>
@@ -143,6 +122,7 @@ void CompareKernel(const phi::Context& dev_ctx,
   } else {
     RawCompareKernelSycl<T>(dev_ctx, kernel_name, x, y, axis, out, func, func);
   } */
+  std::cout<<" compare kernel"<<std::endl;
   RawCompareKernelSycl<T>(dev_ctx, kernel_name, x, y, axis, out, func, func);
 }
 
@@ -152,6 +132,7 @@ void NotEqualKernel(const phi::Context& dev_ctx,
                     const phi::DenseTensor& y,
                     int axis,
                     phi::DenseTensor* out) {
+  std::cout<<"call not equal kernel"<<std::endl;
   EqualityKernel<T>(
       dev_ctx,
       "NotEqual",
@@ -276,11 +257,9 @@ void GreaterEqualKernel(const phi::Context& dev_ctx,
                       uint8_t,                            \
                       int16_t,                            \
                       int32_t,                            \
-                      int64_t,                            \
-                      bool,                               \
-                      phi::dtype::float16) {}
-PD_REGISTER_COMPARE_KERNEL(less_equal, LessEqual)
+                      int64_t                           ) {}
+/* PD_REGISTER_COMPARE_KERNEL(less_equal, LessEqual)
 PD_REGISTER_COMPARE_KERNEL(greater_than, GreaterThan)
 PD_REGISTER_COMPARE_KERNEL(greater_equal, GreaterEqual)
 PD_REGISTER_COMPARE_KERNEL(equal, Equal)
-PD_REGISTER_COMPARE_KERNEL(not_equal, NotEqual)
+PD_REGISTER_COMPARE_KERNEL(not_equal, NotEqual) */

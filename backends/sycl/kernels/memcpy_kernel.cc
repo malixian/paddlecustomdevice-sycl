@@ -28,7 +28,7 @@ void MemcpyD2HKernel(const phi::Context& dev_ctx,
   auto x_data = x.data<T>();
   void* stream = const_cast<void*>(dev_ctx.stream());
   auto* q = static_cast<sycl::queue*>(stream);
-  show_debug("memcpy_d2h -> memcpy(to=" << std::hex << out_data << ", from="
+  show_kernel("memcpy_d2h -> memcpy(to=" << std::hex << out_data << ", from="
                                         << x_data << ", size=" << std::dec
                                         << x.memory_size() << ")");
   q->memcpy(out_data, x_data, x.memory_size());
