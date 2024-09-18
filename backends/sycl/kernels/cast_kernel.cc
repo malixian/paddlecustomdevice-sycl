@@ -112,7 +112,7 @@ void CastKernel(const phi::Context& dev_ctx,
 
 }  // namespace custom_kernel
 
-PD_BUILD_PHI_KERNEL(cast,
+/* PD_BUILD_PHI_KERNEL(cast,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::CastKernel,
@@ -125,6 +125,4 @@ PD_BUILD_PHI_KERNEL(cast,
                     int8_t,
                     uint8_t,
                     phi::dtype::float16,
-                    phi::dtype::bfloat16) {
-  //kernel->OutputAt(0).SetDataType(phi::DataType::UNDEFINED);
-}
+                    phi::dtype::bfloat16) {} */

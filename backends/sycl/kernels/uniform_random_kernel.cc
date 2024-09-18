@@ -12,20 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <random>
 #include "kernels/dnn_support.hpp"
 #include "paddle/phi/capi/all.h"
 
 namespace custom_kernel {
 
 template <typename T>
-inline void UniformRealDistribution(T *data,
-                                    const int64_t &size,
-                                    const float &min,
-                                    const float &max) {
-  
+inline void UniformRealDistribution(T* data,
+                                    const int64_t& size,
+                                    const float& min,
+                                    const float& max,
+                                    std::shared_ptr<std::mt19937_64> engine) {
+  std::normal_distribution<float> dist(static_cast<float>(min),
+                                         static_cast<float>(max));
   for (int64_t i = 0; i < size; ++i) {
-    data[i] = 0.1;
-  } 
+    data[i] = dist(*engine);
+  }
 }
 
 template <typename T>
@@ -53,8 +56,18 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
   cpu_out.set_dtype(out->dtype());
   auto cpu_data = dev_ctx.template HostAlloc<T>(&cpu_out);
 
+  std::shared_ptr<std::mt19937_64> engine;
+  engine = std::make_shared<std::mt19937_64>();
+  if (seed) {
+    engine->seed(seed);
+  } else {
+    std::random_device device;
+    auto rseed = (static_cast<uint64_t>(device()) << 32) | device();
+    engine->seed(rseed);
+  }
+
   UniformRealDistribution<T>(
-      cpu_data, numel, min.to<float>(), max.to<float>());
+      cpu_data, numel, min.to<float>(), max.to<float>(), engine);
   if (diag_num > 0) {
     PD_CHECK(numel,
              (diag_num - 1) * (diag_step + 1),
@@ -71,7 +84,7 @@ void UniformRandomRawKernel(const phi::Context &dev_ctx,
     }
   }
 
-  // 2. CPU Copy to IntelGPU
+  // 2. CPU Copy to SYCL
   auto *q = static_cast<sycl::queue *>(dev_ctx.stream());
   q->memcpy(out_data, cpu_data, numel * sizeof(T));
 }
@@ -86,14 +99,12 @@ void UniformRandomKernel(const phi::Context &dev_ctx,
                          const phi::Scalar &max,
                          int seed,
                          phi::DenseTensor *out) {
-  show_kernel(
-      "UniformRandom-SYCL type=" << dnn_support::type2String<T>::name());
   custom_kernel::UniformRandomRawKernel<T>(
       dev_ctx, shape, dtype, min, max, seed, 0, 0, 0.0f, out);
 }
 }  // namespace custom_kernel
 
-PD_BUILD_PHI_KERNEL(uniform_raw,
+/* PD_BUILD_PHI_KERNEL(uniform_raw,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::UniformRandomRawKernel,
@@ -107,4 +118,4 @@ PD_BUILD_PHI_KERNEL(uniform,
                     custom_kernel::UniformRandomKernel,
                     float,
                     phi::dtype::float16
-                    ) {}
+                    ) {} */

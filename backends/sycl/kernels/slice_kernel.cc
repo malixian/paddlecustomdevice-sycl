@@ -26,6 +26,7 @@ void SliceRawKernel(const phi::Context& ctx,
                     const std::vector<int64_t>& infer_flags,
                     const std::vector<int64_t>& decrease_axis,
                     phi::DenseTensor* out) {
+  show_kernel("slice kernel")
   // Step 1: Get the accurate attribute value of starts and ends
   auto starts = starts_arr.GetData();
   auto ends = ends_arr.GetData();

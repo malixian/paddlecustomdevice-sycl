@@ -28,16 +28,14 @@ void FullKernel(const phi::Context& dev_ctx,
                 phi::DenseTensor* out) {
   
   
-  
+  show_kernel(
+      "Full-ONEDNN type=" << dnn_support::type2String<T>::name()<<" shape= "<<shape.GetData()<<" out dims:"<<out->dims()<<" full val:"<<val.to<T>());
+
   auto int_shape = shape.GetData();
   out->Resize(std::vector<int64_t>(int_shape.cbegin(), int_shape.cend()));
   auto out_data = dev_ctx.template Alloc<T>(out);
 
   T fill_value = val.to<T>();
-
-  show_kernel(
-      "Full-ONEDNN type=" << dnn_support::type2String<T>::name()<<" shape= "<<shape.GetData()<<" out dims:"<<out->dims()<<" val:"<<fill_value);
-
 
   auto* q = static_cast<sycl::queue*>(const_cast<void*>(dev_ctx.stream()));
 
@@ -77,6 +75,5 @@ PD_BUILD_PHI_KERNEL(full,
                     int16_t,
                     int32_t,
                     int64_t,
-                    bool,
-                    phi::dtype::float16
+                    bool
                     ) {}

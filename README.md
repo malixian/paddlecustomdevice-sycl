@@ -16,16 +16,18 @@
 
 ## 编译oneDNN
 - 跨平台的统一DNN库，目前主要针对海光DCU进行适配
-
+- 版本: v3.6
 ```
 export CC=clang
 export CXX=clang++
 
 mkdir build
 cd build
-cmake -DDNNL_CPU_RUNTIME=TBB -DDNNL_GPU_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Release \
+
+cmake -DDNNL_CPU_RUNTIME=NONE -DDNNL_BUILD_EXAMPLES=ON -DDNNL_AMD_SYCL_KERNELS_TARGET_ARCH=gfx906  -DDNNL_GPU_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Debug \
       -DONEDNN_BUILD_TESTS=OFF -DDNNL_GPU_VENDOR=AMD -DONEDNN_BUILD_GRAPH=OFF -G Ninja ..
 ninja -j 16
+
 ```
 
 ## 编译PaddleCustomDevice

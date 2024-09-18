@@ -27,6 +27,7 @@ void ReduceKernel(const phi::Context& dev_ctx,
                   bool keep_dim,
                   bool reduce_all,
                   phi::DenseTensor* out) {
+  show_kernel("ReduceKernel");
   auto x_dims = x.dims();
   auto reduce_dims = dims;
 

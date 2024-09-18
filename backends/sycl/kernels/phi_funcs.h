@@ -18,7 +18,6 @@
 #include <cmath>
 #include <numeric>
 #include <sstream>
-
 #include "paddle/phi/capi/all.h"
 
 namespace phi {

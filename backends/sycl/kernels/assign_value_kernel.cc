@@ -36,13 +36,12 @@ void AssignValueKernel(const phi::Context& dev_ctx,
   out->Resize({static_cast<int64_t>(out_size)});
   auto out_data = dev_ctx.template Alloc<T>(out);
 
-  auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
-
   std::vector<T> assign_values;
   assign_values.reserve(values.size());
   for (const auto& val : values) {
     assign_values.emplace_back(val.to<T>());
   }
+  auto* q = static_cast<sycl::queue*>(dev_ctx.stream());
   q->memcpy(out_data, &assign_values[0], assign_values.size() * sizeof(T));
   q->wait();
   out->Resize(std::vector<int64_t>(shape.cbegin(), shape.cend()));

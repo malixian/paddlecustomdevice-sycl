@@ -147,6 +147,7 @@ void MultiplyMainRaw(const phi::Context& dev_ctx,
                      const phi::DenseTensor& y,
                      int axis,
                      phi::DenseTensor* out) {
+  show_kernel("Elementwise Kernel");
   if constexpr (std::is_same<T, float>::value || std::is_same<T, int32_t>::value
                 //|| std::is_same<T,double>::value
   ) {

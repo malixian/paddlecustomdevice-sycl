@@ -16,7 +16,7 @@
 
 PaddleDev=$(dirname $(dirname `pwd`))
 
-export PADDLE_CUSTOM_PATH=/home/mlx/.local/lib/python3.10/site-packages/paddle
+export PADDLE_CUSTOM_PATH=/home/mlx/miniconda3/envs/paddle/lib/python3.10/site-packages/paddle
 
 echo $d
 export PYTHONPATH=$PYTHONPATH:${PaddleDev}/python/tests/

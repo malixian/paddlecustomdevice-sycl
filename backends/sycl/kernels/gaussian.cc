@@ -18,92 +18,57 @@
 
 namespace custom_kernel {
 
-
 template <typename T>
-inline void UniformRealDistribution(T *data,
-                                    const int64_t &size,
-                                    const float &min,
-                                    const float &max,
-                                    std::shared_ptr<std::mt19937> engine) {
-  std::uniform_real_distribution<T> dist(static_cast<T>(min),
-                                         static_cast<T>(max));
-  for (int64_t i = 0; i < size; ++i) {
-    data[i] = dist(*engine);
-  }
-}
-
-template <typename T>
-void UniformRandomRawKernel(const phi::Context &dev_ctx,
-                            const phi::IntArray &shape,
-                            phi::DataType dtype,
-                            float min,
-                            float max,
-                            int seed,
-                            int diag_num,
-                            int diag_step,
-                            float diag_val,
-                            phi::DenseTensor *out) {
-  show_kernel(
-      "UniformRandom-SYCL type=" << dnn_support::type2String<T>::name());
-
-  auto shape_data = shape.GetData();
-  out->Resize(std::vector<int64_t>(shape_data.begin(), shape_data.end()));
-  auto out_data = dev_ctx.template Alloc<T>(out);
-  auto numel = out->numel();
-
-  /* // // 1. CPU implement
-  phi::DenseTensor cpu_out;
-  cpu_out.Resize(std::vector<int64_t>(shape_data.begin(), shape_data.end()));
-  cpu_out.set_dtype(out->dtype());
-  auto cpu_data = dev_ctx.template HostAlloc<T>(&cpu_out);
-
-  std::shared_ptr<std::mt19937> engine;
-  engine = std::make_shared<std::mt19937>();
-  engine->seed(seed);
-
-  UniformRealDistribution<float>(
-      cpu_data, numel, min, max, engine);
-  if (diag_num > 0) {
-    PD_CHECK(numel,
-             (diag_num - 1) * (diag_step + 1),
-             "ShapeInvalid: the diagonal's elements is equal (num-1) "
-             "* (step-1) with num %d, step %d,"
-             "It should be smaller than %d, but received %d",
-             diag_num,
-             diag_step,
-             (diag_num - 1) * (diag_step + 1),
-             numel);
-    for (int64_t i = 0; i < diag_num; ++i) {
-      int64_t pos = i * diag_step + i;
-      cpu_data[pos] = diag_val;
-    }
-  } */
-
-  // 2. CPU Copy to IntelGPU
-  std::vector<float> cpu_data(numel, 2.0);
-  auto *q = static_cast<sycl::queue *>(dev_ctx.stream());
-  q->memcpy(out_data, &cpu_data[0], numel * sizeof(T));
-}
-
-template <typename T>
-void GaussianKernel(const phi::Context &dev_ctx,
+void GaussianKernel(const phi::Context &ctx,
                     const phi::IntArray &shape,
                     float mean,
                     float std,
                     int seed,
                     phi::DataType dtype,
-                    phi::DenseTensor* out) {
+                    phi::DenseTensor* out)
+{
+
   show_kernel(
-      "Gaussian-SYCL type=" << dnn_support::type2String<T>::name());
-  custom_kernel::UniformRandomRawKernel<float>(
-      dev_ctx, shape, dtype, mean, std, seed, 0, 0, 0.0f, out);
+      "Call Gaussian Kernel");
+  auto shape_data = shape.GetData();
+  out->Resize(std::vector<int64_t>(shape_data.begin(), shape_data.end()));
+  auto out_data = ctx.template Alloc<T>(out);
+  auto numel = out->numel();
+
+  phi::DenseTensor cpu_tensor;
+  cpu_tensor.Resize(std::vector<int64_t>(shape_data.begin(), shape_data.end()));
+  cpu_tensor.set_dtype(out->dtype());
+  T* cpu_data = ctx.template HostAlloc<T>(&cpu_tensor);
+  std::normal_distribution<float> dist(mean, std);
+
+  std::shared_ptr<std::mt19937_64> engine;
+  engine = std::make_shared<std::mt19937_64>();
+  if (seed) {
+    engine->seed(seed);
+  } else {
+    std::random_device device;
+    auto rseed = (static_cast<uint64_t>(device()) << 32) | device();
+    engine->seed(rseed);
+  }
+
+  for (int64_t i = 0; i < numel; ++i) {
+    cpu_data[i] = static_cast<T>(dist(*engine));
+    std::cout<<cpu_data[i]<<" ";
+  }
+
+  auto* q = static_cast<sycl::queue*>(ctx.stream());
+  q->memcpy(out_data, cpu_data, numel * sizeof(T));
+  q->wait();
+
 }
+
 }  // namespace custom_kernel
+
 
 PD_BUILD_PHI_KERNEL(gaussian,
                     SYCL,
                     ALL_LAYOUT,
                     custom_kernel::GaussianKernel,
                     float,
+                    double,
                     phi::dtype::float16) {}
-
