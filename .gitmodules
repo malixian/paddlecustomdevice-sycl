@@ -1,0 +1,4 @@
+[submodule "Paddle"]
+	path = Paddle
+	url = https://gitee.com/paddlepaddle/Paddle.git
+	branch = release/2.6
